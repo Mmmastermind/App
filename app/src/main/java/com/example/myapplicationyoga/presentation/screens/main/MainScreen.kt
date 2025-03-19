@@ -26,7 +26,7 @@ fun MainScreen(navController: NavController, mainViewModel: MainViewModel = view
             .background(Beige1)
 
     ) {
-        Column(modifier = Modifier.padding(horizontal = 40.dp, vertical = 50.dp,)) {
+        Column(modifier = Modifier.padding(horizontal = 40.dp, vertical = 50.dp,) .padding(top = 20.dp)) {
             Text(
                 "Добрый день!",
                 color = Brown1,

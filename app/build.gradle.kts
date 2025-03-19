@@ -74,10 +74,6 @@ dependencies {
 
     implementation("io.coil-kt:coil-svg:2.2.2")
 
-    implementation ("com.yandex.android:maps.mobile:4.10.1-lite")
-
-    implementation("ru.sulgik.mapkit:yandex-mapkit-kmp-compose:0.1.1")
-
     implementation("androidx.core:core-ktx:1.12.0")
 
     implementation("com.google.accompanist:accompanist-permissions:0.31.2-alpha")
@@ -86,6 +82,6 @@ dependencies {
 
     implementation("androidx.compose.foundation:foundation:1.7.8")
 
-    implementation("com.simonsickle:composed-barcodes:1.3.0")
+
 
 }

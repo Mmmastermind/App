@@ -12,7 +12,7 @@ import com.example.myapplicationyoga.presentation.screens.splash.SplashScreen
 @Composable
 fun Navigation_(){
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = NavigationRoutes.SIGNUP) {
+    NavHost(navController = navController, startDestination = NavigationRoutes.SPLASH) {
         composable(NavigationRoutes.SPLASH)
         {
             SplashScreen(navController)

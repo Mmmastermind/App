@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplicationyoga.R
 import com.example.myapplicationyoga.presentation.ui.theme.Brown1
-import com.yandex.mapkit.logo.VerticalAlignment
+
 import java.lang.Error
 import java.util.Date
 import androidx.compose.material3.Text as Text1

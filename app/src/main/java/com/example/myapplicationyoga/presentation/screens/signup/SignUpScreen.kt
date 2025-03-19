@@ -24,6 +24,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,6 +39,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Popup
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -81,7 +83,7 @@ val UiState = signUpViewModel.UiState
 
     ) {
         Column(
-            modifier = Modifier.padding(horizontal = 35.dp, vertical = 50.dp).padding(top = 50.dp)
+            modifier = Modifier.padding(horizontal = 35.dp, vertical = 50.dp).padding(top = 30.dp)
         ) {
             Text(
                 "Создайте аккаунт:",
@@ -207,7 +209,7 @@ val UiState = signUpViewModel.UiState
                 shape = RoundedCornerShape(20.dp),
                 keyboardOptions =   KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = ImeAction.Next),
             )
-            Spacer(Modifier.height(5.dp))
+            Spacer(Modifier.height(25.dp))
             when (ResultState.value) {
                 is ResultStates.Error -> {
                     Button(
@@ -229,10 +231,13 @@ val UiState = signUpViewModel.UiState
                 }
 
                 is ResultStates.Success -> {
-                    navController.navigate(NavigationRoutes.MAIN)
+                    LaunchedEffect(Unit) { navController.navigate(NavigationRoutes.MAIN)
                     {
+                         popUpTo(NavigationRoutes.SIGNIN){
+                             inclusive = true;
+                         }
+                    } }
 
-                    }
                 }
             }
 
