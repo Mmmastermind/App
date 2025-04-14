@@ -4,6 +4,8 @@ package com.example.myapplicationyoga.domain
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.storage.Storage
+import com.google.android.gms.auth.api.signin.internal.Storage as Storage1
 
 
 object Constant {
@@ -13,5 +15,7 @@ object Constant {
  ){
   install(Postgrest)
   install(Auth)
+  install(Storage)
+
  }
 }

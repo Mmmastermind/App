@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarToday
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Divider
@@ -29,7 +30,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -167,4 +170,40 @@ Text(
             color = Brown1,
             thickness =  1.dp)
     }
+}
+
+@Composable
+fun TextFieldSearch(value: String, onvaluechange: (String) -> Unit) {
+    androidx.compose.material3.TextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = value,
+        leadingIcon = {
+                Icon(imageVector = Icons.Filled.Search, contentDescription = "search")
+
+        },
+        onValueChange = { onvaluechange(it) },
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Color.White,
+            unfocusedTextColor = Color.Black,
+            focusedContainerColor = Color.White,
+            focusedTextColor = Color.Black,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        ),
+        placeholder = {
+            Text(
+                "Поиск",
+                color = Color.LightGray,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.W600,
+                modifier = Modifier.padding(start = 10.dp)
+            )
+        },
+
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text
+        ),
+        shape = RoundedCornerShape(15.dp),
+    )
 }

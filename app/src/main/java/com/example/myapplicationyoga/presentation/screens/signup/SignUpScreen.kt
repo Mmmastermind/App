@@ -57,7 +57,8 @@ import androidx.compose.material3.IconButton as IconButton1
 
 @Composable
 fun SignUpScreen(navController: NavController, signUpViewModel: SignUpViewModel = viewModel()){
-val UiState = signUpViewModel.UiState
+
+    val UiState = signUpViewModel.UiState
 
     val ResultState = signUpViewModel.resultStates.collectAsState()
     val mContext = LocalContext.current
