@@ -41,13 +41,16 @@ import com.example.myapplicationyoga.data.models.yogaclasses
 import com.example.myapplicationyoga.presentation.ui.theme.Beige1
 
 @Composable
-fun YogaCard(yoga: yogaclasses, getUrl: (String)->String){
+fun YogaCard(yoga: yogaclasses, getUrl: (String)->String, onClick:()->Unit){
 //    var imageUrl by remember { mutableStateOf("") }
     Card(
 
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
+            .clickable {
+                onClick()
+            }
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -64,7 +67,7 @@ fun YogaCard(yoga: yogaclasses, getUrl: (String)->String){
             }
             if (imgState is AsyncImagePainter.State.Success) {
                 Image(
-                    //nут можно настроить то как выглядит картинка
+
                     modifier = Modifier
                         .fillMaxWidth(1f)
                         .clip(RoundedCornerShape(15.dp)),

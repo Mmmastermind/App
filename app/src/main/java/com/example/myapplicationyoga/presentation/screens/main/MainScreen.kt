@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -40,6 +41,7 @@ import coil.request.ImageRequest
 import coil.size.Size
 import com.example.myapplicationyoga.domain.states.ResultStates
 import com.example.myapplicationyoga.presentation.navigation.NavigationRoutes
+import com.example.myapplicationyoga.presentation.screens.components.Button
 import com.example.myapplicationyoga.presentation.screens.components.CategoryItem
 import com.example.myapplicationyoga.presentation.screens.components.TextFieldSearch
 import com.example.myapplicationyoga.presentation.screens.components.YogaCard
@@ -71,7 +73,7 @@ fun MainScreen(navController: NavController, mainViewModel: MainViewModel = view
         Column(modifier = Modifier
             .padding(horizontal = 40.dp, vertical = 50.dp,)
             .padding(top = 20.dp)) {
-            Text(
+            Row { Text(
                 "Добрый день!",
                 color = Brown1,
                 fontSize = 33.sp,
@@ -79,10 +81,21 @@ fun MainScreen(navController: NavController, mainViewModel: MainViewModel = view
                 textAlign = TextAlign.Center,
                 lineHeight = 40.sp,
                 modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(horizontal = 50.dp)
+
+                    .padding(horizontal = 20.dp)
 
             )
+                Button(
+                    label = "+",
+                    onClick = {
+                        navController.navigate(NavigationRoutes.NEWYOGA)
+                        {
+
+                        }
+                    }
+                )
+            }
+
             Spacer(modifier = Modifier.size(10.dp))
             TextFieldSearch(
                 value = textSearch.value,
@@ -144,11 +157,14 @@ fun MainScreen(navController: NavController, mainViewModel: MainViewModel = view
 
                     LazyColumn {
                         items(yoga.value) { it ->
-                            YogaCard(yoga = it ) {
+                            YogaCard(yoga = it, {
                                 runBlocking {
                                     mainViewModel.getImage(it)
                                 }
-                            }
+                            }, onClick = {
+                            navController.navigate(NavigationRoutes.YOGADETAILS + "/" + it.id) //Создаем маршрутизацию
+                        }
+                            )
                         }
                     }
                     }

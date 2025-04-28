@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
@@ -27,8 +29,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -39,6 +43,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplicationyoga.R
+import com.example.myapplicationyoga.presentation.ui.theme.Beige1
 import com.example.myapplicationyoga.presentation.ui.theme.Brown1
 
 import java.lang.Error
@@ -203,6 +208,67 @@ fun TextFieldSearch(value: String, onvaluechange: (String) -> Unit) {
 
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text
+        ),
+        shape = RoundedCornerShape(15.dp),
+    )
+}
+
+
+@Composable
+fun TextFieldEdit(value: String, onValueChanged: (String) -> Unit) {
+    val focusManager = LocalFocusManager.current
+    androidx.compose.material3.TextField(
+        value = value,
+        textStyle = MaterialTheme.typography.bodyLarge,
+        onValueChange = {
+            onValueChanged(it)
+        },
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp),
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Brown1,
+            unfocusedTextColor = Beige1,
+            focusedContainerColor = Brown1,
+            focusedTextColor = Beige1,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        ),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        keyboardActions = KeyboardActions(
+            onNext = { focusManager.moveFocus(FocusDirection.Down) }
+        ),
+        shape = RoundedCornerShape(15.dp),
+    )
+}
+@Composable
+fun TextFieldDropDown(value: String,onExpandedChange: (Boolean) -> Unit) {
+
+    val focusManager = LocalFocusManager.current
+    androidx.compose.material3.TextField(
+        value = value,
+        textStyle = MaterialTheme.typography.bodyLarge,
+        onValueChange = {
+
+        },
+        trailingIcon = {
+            IconButton(onClick = { onExpandedChange(true) }) {
+                Icon(Icons.Default.ArrowDropDown, contentDescription = null)
+            }
+        },
+        readOnly = true,
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp),
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Brown1,
+            unfocusedTextColor = Beige1,
+            focusedContainerColor = Brown1,
+            focusedTextColor = Beige1,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        ),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        keyboardActions = KeyboardActions(
+            onNext = { focusManager.moveFocus(FocusDirection.Down) }
         ),
         shape = RoundedCornerShape(15.dp),
     )

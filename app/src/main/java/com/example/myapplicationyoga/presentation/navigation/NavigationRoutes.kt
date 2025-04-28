@@ -5,4 +5,6 @@ object NavigationRoutes {
     const val SIGNIN = "signin"
     const val SIGNUP = "signup"
     const val MAIN = "main"
+    const val YOGADETAILS = "yogadetails"
+    const val NEWYOGA = "newyoga"
 }

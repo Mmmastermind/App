@@ -9,6 +9,6 @@ data class yogaclasses (
     val name: String,
     val description:String,
     val categoryId:Int,
-    val price:Float,
+    val price:String,
     val id:String
 )
